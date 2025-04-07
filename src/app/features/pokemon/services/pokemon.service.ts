@@ -13,11 +13,16 @@ export class PokemonService {
   constructor(private http: HttpClient) {}
 
 
-   getPokemonNames(limit: number): Observable<string[]> {
+  /**
+   * Fetches a list of Pokemon names from the API.
+   * @param limit The number of Pokemon names to fetch.
+   * @returns An observable containing an array of Pokemon names.
+   */
+  getPokemonNames(limit: number): Observable<{ name: string }[]> {
     return this.http.get<any>(`${this.apiUrl}/pokemon?limit=${limit}`).pipe(
       map((response: any) => {
-        console.log('API Response:', response); 
-        return response.results.map((pokemon: any) => pokemon.name);
+        console.log('API Response:', response); // Verifica la respuesta
+        return response.results.map((pokemon: any) => ({ name: pokemon.name }));
       }),
       catchError((error) => {
         console.error('Error fetching pokemon names', error);
@@ -25,6 +30,8 @@ export class PokemonService {
       })
     );
   }
+  
+
 
   getPokemonList(limit: number, offset: number): Observable<any> {
     return this.http
@@ -37,7 +44,11 @@ export class PokemonService {
         })
       );
   }
-
+  /**
+   * Fetches detailed information about a specific Pokemon by its name.
+   * @param name The name of the Pokemon to fetch.
+   * @returns An observable containing the detailed information of the Pokemon.
+   */  
   getPokemonInfo(name: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/pokemon/${name}`).pipe(
       catchError((error) => {

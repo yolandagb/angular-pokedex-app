@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { PokemonModule } from './features/pokemon/pokemon.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CardComponent } from './shared/components/card/card.component';
+import { SearchBarComponent } from './shared/components/search-bar/search-bar.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     PokemonModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    CardComponent,
+    SearchBarComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

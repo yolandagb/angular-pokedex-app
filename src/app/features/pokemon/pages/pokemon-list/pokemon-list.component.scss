@@ -1,17 +1,29 @@
 .pokemon-list-container {
     display: flex;
     flex-direction: column;
-    /* Organiza las secciones en columnas */
     gap: 1rem;
-    /* Espaciado entre las secciones */
     padding: 1rem;
 }
 
-
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.logo{
+    height: 196px;
+}
 .card-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* 3 cards por fila cuando hay espacio */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 1rem;
-    padding: 1rem;;
+    padding: 1rem;
 
 }
+
+.mat-paginator {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  

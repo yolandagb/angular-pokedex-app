@@ -11,14 +11,17 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardComponent } from 'src/app/shared/components/card/card.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { SearchBarComponent } from 'src/app/shared/components/search-bar/search-bar.component';
 
 @NgModule({
   declarations: [PokemonListComponent],
-  imports: [CommonModule,RouterModule,PokemonRoutingModule, PokemonDetailComponent,MatIconModule,
+  imports: [CommonModule, RouterModule, PokemonRoutingModule, PokemonDetailComponent, MatIconModule,
     MatInputModule,
     MatButtonModule,
     FormsModule,
     ReactiveFormsModule,
-  CardComponent],
+    CardComponent, MatPaginatorModule,
+    SearchBarComponent],
 })
-export class PokemonModule {}
+export class PokemonModule { }

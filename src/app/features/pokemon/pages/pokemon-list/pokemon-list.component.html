@@ -7,44 +7,20 @@
     </div>
   </div>
     <!-- Search Bar -->
-  <!-- <div class="search-bar">
-    <div class="search-icon-container" >
-      <div class="search-icon" (click)="togglePokemonSearch()">
-        <mat-icon>search</mat-icon>
-      </div>
-    </div>
-  
-    <div class="back-icon-container" >
-      <div class="back-icon" (click)="backToPokemonCards()">
-        <mat-icon>arrow_back</mat-icon>
-      </div>
-    </div>
-  </div>
-  
-  
-  <div class="search-bar-container">
-    <div class="search-bar" *ngIf="showSearchBar">
-      <mat-form-field class="search-form" appearance="outline">
-        <mat-label>Search Pokémon</mat-label>
-        <input
-          matInput
-          [formControl]="searchControl"
-          placeholder="Write the Pokémon's name"
-        />
-        <mat-icon matSuffix *ngIf="searchControl.value" (click)="clearSearch()"
-          >close</mat-icon
-        >
-        <mat-hint *ngIf="searchControl.value?.length < 3"
-          >Please enter at least 3 characters to search</mat-hint
-        >
-      </mat-form-field>
-    </div>
-  </div> -->
+    <app-search-bar></app-search-bar>
   
   
   <div class="pokemon-list-container">
     <app-card [pokemonNames]="pokemonNames"></app-card>
   </div>
+
+  <!-- Pagination -->
+  <mat-paginator
+    [length]="totalPokemon"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[20, 40, 60]"
+    (page)="onPageChange($event)"
+  ></mat-paginator>
   
   <!-- <div *ngIf="isLoading" class="loading">
     <p>Loading Pokémon names...</p>
