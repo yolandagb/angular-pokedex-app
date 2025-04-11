@@ -10,7 +10,7 @@ import { MatCardModule } from '@angular/material/card';
   imports: [MatCardModule,CommonModule],
 })
 export class CardComponent {
-  @Input() pokemonNames: { name: string}[] = []; 
+  @Input() pokemonNames: any[] = []; 
   ngOnChanges(): void {
     console.log('Pokemon Names:', this.pokemonNames);
   }

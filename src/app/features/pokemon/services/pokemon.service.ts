@@ -22,7 +22,7 @@ export class PokemonService {
     return this.http.get<any>(`${this.apiUrl}/pokemon?limit=${limit}`).pipe(
       map((response: any) => {
         console.log('API Response:', response); // Verifica la respuesta
-        return response.results.map((pokemon: any) => ({ name: pokemon.name }));
+        return response.results.map((pokemon: Pokemon) => ({ name: pokemon.name }));
       }),
       catchError((error) => {
         console.error('Error fetching pokemon names', error);

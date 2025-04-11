@@ -4,12 +4,13 @@
     justify-content: center;
     margin: 2rem auto;
     max-width: 600px;
+    gap:12px;
   
     .search-input {
       flex: 1;
       padding: 0.75rem 1rem;
       border: none;
-      border-radius: 12px 0 0 12px;
+      border-radius: 12px;
       font-size: 1rem;
       outline: none;
       background-color: #fff;
@@ -22,16 +23,16 @@
   
     .search-button {
       padding: 0.75rem 1rem;
-      background-color: #f44336; // rojo/naranja similar al de tu diseño
+      background-color:#FF5350;
       border: none;
-      border-radius: 0 12px 12px 0;
+      border-radius: 12px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
   
-      svg {
-        fill: white;
+      mat-icon {
+        color: white;
         width: 20px;
         height: 20px;
       }
