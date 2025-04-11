@@ -1,17 +1,42 @@
 <div class="grid-wrapper">
-  <div *ngFor="let pokemon of pokemonNames" class="custom-card" [attr.type]="pokemon.types[0]?.type.name">
-    <div class="card-content">
-      <div class="card-info">
-        <p class="bubble" [attr.type]="pokemon.types[0]?.type.name"> {{ pokemon.types[0]?.type.name | capitalize }}</p>
-        <h3 class="pokemon-name">{{ pokemon.name | capitalize }}</h3>
-        <p><strong>Height:</strong> {{ pokemon.height }}</p>
-        <p><strong>Weight:</strong> {{ pokemon.weight }}</p>
-        <p class="bubble" [attr.type]="pokemon.types[0]?.type.name" (click)="navigateToDetail(pokemon.id)"> Know More</p>
-      </div>
-      <div class="card-image">
-        <span class="id">#{{ pokemon.id }}</span>
-        <img class="pokemon-image" [src]="pokemon.sprites.front_default" alt="{{ pokemon.name }}" />
+  <ng-container *ngIf="pokemonNames?.length">
+    <div *ngFor="let pokemon of pokemonNames" class="custom-card" [attr.type]="pokemon.types[0]?.type.name">
+      <div class="card-content">
+        <div class="card-info">
+          <p class="bubble" *ngFor="let type of pokemon.types" [attr.type]="pokemon.types[0]?.type.name"> {{
+            pokemon.types[0]?.type.name | capitalize }}</p>
+          <h3 class="pokemon-name">{{ pokemon.name | capitalize }}</h3>
+          <p><strong>Height:</strong> {{ pokemon.height }}</p>
+          <p><strong>Weight:</strong> {{ pokemon.weight }}</p>
+          <p class="bubble" [attr.type]="pokemon.types[0]?.type.name" (click)="navigateToDetail(pokemon.id)"> Know More
+          </p>
+        </div>
+        <div class="card-image">
+          <span class="id">#{{ pokemon.id }}</span>
+          <img class="pokemon-image" [src]="pokemon.sprites.front_default" alt="{{ pokemon.name }}" />
+        </div>
       </div>
     </div>
-  </div>
+  </ng-container>
+
+  <!-- Details card -->
+  <ng-container *ngIf="pokemonDetails">
+    <div class="custom-card" [attr.type]="pokemonDetails.types[0]?.type.name">
+      <div class="card-content">
+        <div class="card-info">
+          <h3 class="pokemon-name">{{ pokemonDetails?.name | capitalize }}</h3>
+          <p class="bubble" *ngFor="let type of pokemonDetails.types" [attr.type]="type.type.name">
+            {{ type.type.name | capitalize }}
+          </p>
+          <p><strong>Height:</strong> {{ pokemonDetails.height }} cm</p>
+          <p><strong>Weight:</strong> {{ pokemonDetails.weight }} kg</p>
+        </div>
+        <div class="card-image">
+          <span class="id">#{{ pokemonDetails.id }}</span>
+          <img class="pokemon-image" [src]="pokemonDetails?.sprites?.other?.showdown?.front_default" alt="{{ pokemonDetails.name }}" />
+         
+        </div>
+      </div>
+    </div>
+  </ng-container>
 </div>

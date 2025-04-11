@@ -9,13 +9,21 @@ import { Router } from '@angular/router';
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
   standalone: true,
-  imports: [MatCardModule,CommonModule,CapitalizePipe],
+  imports: [MatCardModule, CommonModule, CapitalizePipe],
 })
 export class CardComponent {
-  @Input() pokemonNames: any[] = []; 
-  constructor(private router: Router) {}
+  @Input() pokemonNames: any[] = [];
+  @Input() pokemonDetails: any = null;
+  constructor(private router: Router) { }
+  ngOnInit(): void {
+    if (this.pokemonNames?.length && this.pokemonDetails) {
+      console.warn(
+        '[CardComponent] Recibió tanto "pokemonNames" como "singlePokemon". Se recomienda usar solo uno a la vez.'
+      );
+    }
+  }
 
   navigateToDetail(id: number): void {
-    this.router.navigate(['/pokemon', id]); 
+    this.router.navigate(['/pokemon', id]);
   }
 }
