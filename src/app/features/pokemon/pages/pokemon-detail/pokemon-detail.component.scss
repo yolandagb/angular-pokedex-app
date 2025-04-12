@@ -1,8 +1,9 @@
-/* filepath: /Users/yolanda/pokedex-app/src/app/features/pokemon/pages/pokemon-detail/pokemon-detail.component.scss */
 .pokemon-detail {
   text-align: center;
 
   h1 {
+    font-family: 'Kumbh Sans', sans-serif;
+
     font-size: 2rem;
     margin-bottom: 1rem;
   }
@@ -12,26 +13,150 @@
     height: 150px;
     margin-bottom: 1rem;
   }
+}
 
-  p {
-    font-size: 1.2rem;
-    margin: 0.5rem 0;
+app-card {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.evolution-container {
+  margin-top: 2rem;
+  text-align: center;
+
+  h3 {
+    font-family: 'Kumbh Sans', sans-serif;
+
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    font-weight: bold;
   }
 
-  ul {
-    list-style: none;
-    padding: 0;
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
 
-    li {
-      font-size: 1rem;
-      margin: 0.3rem 0;
+  .evolution-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    .evolution-image {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      border-radius: 50%;
+      transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+      will-change: transform, box-shadow;
+
+      &:hover {
+        transform: scale(1.1) rotate(2deg);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+      }
+    }
+
+    p {
+      margin-top: 0.5rem;
+      font-weight: 600;
+      text-transform: capitalize;
+    }
+  }
+
+  .arrow-icon {
+    width: 32px;
+    height: 32px;
+    stroke: #888;
+    transition: stroke 0.3s ease;
+
+    &:hover {
+      stroke: #2c7be5;
     }
   }
 }
 
-.loading,
-.error {
-  text-align: center;
-  font-size: 1.2rem;
-  color: gray;
+/* ----- MEDIA QUERIES ----- */
+
+/* Tablet */
+@media (max-width: 768px) {
+  .pokemon-detail {
+    h1 {
+      font-family: 'Kumbh Sans', sans-serif;
+
+      font-size: 1.6rem;
+    }
+
+    img {
+      width: 120px;
+      height: 120px;
+    }
+  }
+
+  .evolution-container {
+    h3 {
+      font-family: 'Kumbh Sans', sans-serif;
+
+      font-size: 1.6rem;
+    }
+
+    .container {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .evolution-card {
+      .evolution-image {
+        width: 90px;
+        height: 90px;
+      }
+    }
+  }
+}
+
+/* Móvil */
+@media (max-width: 480px) {
+  .pokemon-detail {
+    h1 {
+      font-size: 1.4rem;
+      font-family: 'Kumbh Sans', sans-serif;
+    }
+
+    img {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  .evolution-container {
+    h3 {
+      font-family: 'Kumbh Sans', sans-serif;
+
+      font-size: 1.4rem;
+    }
+
+    .container {
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .evolution-card {
+      .evolution-image {
+        width: 80px;
+        height: 80px;
+      }
+    }
+
+    .arrow-icon {
+      width: 28px;
+      height: 28px;
+    }
+  }
 }

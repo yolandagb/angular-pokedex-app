@@ -1,5 +1,5 @@
-<div class="grid-wrapper">
-  <ng-container *ngIf="pokemonNames?.length">
+<div class="grid-wrapper" *ngIf="pokemonNames?.length">
+  <ng-container >
     <div *ngFor="let pokemon of pokemonNames" class="custom-card" [attr.type]="pokemon.types[0]?.type.name">
       <div class="card-content">
         <div class="card-info">
@@ -18,25 +18,25 @@
       </div>
     </div>
   </ng-container>
+</div>
 
-  <!-- Details card -->
-  <ng-container *ngIf="pokemonDetails">
-    <div class="custom-card" [attr.type]="pokemonDetails.types[0]?.type.name">
-      <div class="card-content">
-        <div class="card-info">
-          <h3 class="pokemon-name">{{ pokemonDetails?.name | capitalize }}</h3>
-          <p class="bubble" *ngFor="let type of pokemonDetails.types" [attr.type]="type.type.name">
-            {{ type.type.name | capitalize }}
-          </p>
-          <p><strong>Height:</strong> {{ pokemonDetails.height }} cm</p>
-          <p><strong>Weight:</strong> {{ pokemonDetails.weight }} kg</p>
-        </div>
-        <div class="card-image">
-          <span class="id">#{{ pokemonDetails.id }}</span>
-          <img class="pokemon-image" [src]="pokemonDetails?.sprites?.other?.showdown?.front_default" alt="{{ pokemonDetails.name }}" />
-         
-        </div>
+ <!-- Details card -->
+ <ng-container *ngIf="pokemonDetails">
+  <div class="custom-card-list" [attr.type]="pokemonDetails.types[0]?.type.name">
+    <div class="card-content">
+      <div class="card-info">
+        <h3 class="pokemon-name">{{ pokemonDetails?.name | capitalize }}</h3>
+        <p class="bubble" *ngFor="let type of pokemonDetails.types" [attr.type]="type.type.name">
+          {{ type.type.name | capitalize }}
+        </p>
+        <p><strong>Height:</strong> {{ pokemonDetails.height }} cm</p>
+        <p><strong>Weight:</strong> {{ pokemonDetails.weight }} kg</p>
+      </div>
+      <div class="card-image">
+        <span class="id">#{{ pokemonDetails.id }}</span>
+        <img class="pokemon-image" [src]="pokemonDetails?.sprites?.other?.showdown?.front_default" alt="{{ pokemonDetails.name }}" />
+       
       </div>
     </div>
-  </ng-container>
-</div>
+  </div>
+</ng-container>

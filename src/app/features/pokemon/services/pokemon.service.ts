@@ -57,4 +57,12 @@ export class PokemonService {
       })
     );
   }
+
+  getPokemonSpecies(url: string) {
+    return this.http.get(url); // species.url viene completo
+  }
+  
+  getEvolutionChain(url: string) {
+    return this.http.get(url); // También viene como URL completa
+  }
 }

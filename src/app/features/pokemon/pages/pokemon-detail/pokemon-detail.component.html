@@ -6,6 +6,15 @@
 <app-card [pokemonDetails]="pokemonDetails"></app-card>
 
 
-
-
-
+<div class="evolution-container" *ngIf="evolutionChain.length">
+  <h3>Evolution Chain</h3>
+  <div class="container">
+    <ng-container *ngFor="let evo of evolutionChain; let i = index">
+      <div class="evolution-card" (click)="navigateToDetail(evo.id)">
+        <img [src]="evo.image" [alt]="evo.name" class="evolution-image" />
+        <p>{{ evo.name | capitalize }}</p>
+      </div>
+      <mat-icon class="arrow-icon" *ngIf="i < evolutionChain.length - 1">arrow_forward</mat-icon>
+    </ng-container>
+  </div>
+</div>
