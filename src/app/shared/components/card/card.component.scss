@@ -12,17 +12,109 @@
     gap: 1.5rem;
     grid-template-columns: repeat(2, 1fr);
   }
+
 }
 
-/* Mobile */
-@media (max-width: 600px) {
+@media (max-width: 1200px) {
   .grid-wrapper {
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
-    grid-template-columns: 1fr;
+  }
+
+  .custom-card {
+    max-width: 350px;
+    padding: 1rem;
+  }
+
+  .custom-card .card-content {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .custom-card .pokemon-name {
+    font-size: 1.2rem;
+  }
+
+  .custom-card .bubble {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.9rem;
+  }
+
+  .custom-card .card-image .pokemon-image {
+    width: 110px;
+    height: 110px;
   }
 }
 
-/* Responsividad para las tarjetas */
+/* iPad Mini y otros dispositivos similares */
+@media (max-width: 1024px) {
+
+  /* Modo retrato para tabletas más pequeñas */
+  .grid-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+    /* Dos columnas */
+    gap: 1.5rem;
+  }
+
+  .custom-card {
+    max-width: 320px;
+    padding: 1rem;
+  }
+
+  .custom-card .card-content {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .custom-card .pokemon-name {
+    font-size: 1.1rem;
+  }
+
+  .custom-card .bubble {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.7rem;
+  }
+
+  .custom-card .card-image .pokemon-image {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+
+/* Mobile */
+@media (max-width: 600px) {
+
+  /* Teléfonos móviles */
+  .grid-wrapper {
+    grid-template-columns: 1fr;
+    /* Solo una columna */
+    gap: 1rem;
+  }
+
+  .custom-card {
+    max-width: 100%;
+    padding: 0.5rem;
+  }
+
+  .custom-card .card-content {
+    grid-template-columns: 1fr;
+  }
+
+  .custom-card .pokemon-name {
+    font-size: 0.9rem;
+  }
+
+  .custom-card .bubble {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  .custom-card .card-image .pokemon-image {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+
 
 .custom-card {
   width: 100%;
@@ -46,6 +138,7 @@
     gap: 1rem;
 
     .pokemon-name {
+      font-family: 'Kumbh Sans', sans-serif;
       font-size: 1.1rem;
       font-weight: 600;
       color: #000000;
@@ -62,6 +155,8 @@
       text-align: center;
       margin-bottom: 0.5rem;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      font-family: 'Kumbh Sans', sans-serif;
+
     }
 
     .bubble[type="fire"] {
@@ -143,10 +238,14 @@
   }
 
   .custom-card .pokemon-name {
+    font-family: 'Kumbh Sans', sans-serif;
+
     font-size: 1rem;
   }
 
   .custom-card .bubble {
+    font-family: 'Kumbh Sans', sans-serif;
+
     font-size: 0.8rem;
     padding: 0.3rem 0.7rem;
   }
@@ -174,10 +273,14 @@
   }
 
   .custom-card .pokemon-name {
+    font-family: 'Kumbh Sans', sans-serif;
+
     font-size: 0.9rem;
   }
 
   .custom-card .bubble {
+    font-family: 'Kumbh Sans', sans-serif;
+
     font-size: 0.75rem;
     padding: 0.3rem 0.6rem;
   }
@@ -192,7 +295,6 @@
   }
 }
 
-/* Card List (Pantallas grandes) */
 .custom-card-list {
   width: 1071px;
   height: 678px;
@@ -200,12 +302,33 @@
   border-radius: 12px;
   padding: 1rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1rem;
 
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  }
+
+
+
+  .card-image{
+    height: 100%;
+    display: flex;
+
+    .pokemon-image{
+      width: 123px;
+      height: 120px;
+      margin: 0 auto 0.5rem;
+    }
+  }
+
+  .c {
+    font-size: 1.1rem;
+    color: #000000;
+    font-family: 'Kumbh Sans', sans-serif;
+
   }
 
   .card-content {
@@ -217,6 +340,8 @@
       font-size: 1.1rem;
       font-weight: 600;
       color: #000000;
+      font-family: 'Kumbh Sans', sans-serif;
+
     }
 
     .bubble {
@@ -230,6 +355,8 @@
       text-align: center;
       margin-bottom: 0.5rem;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      font-family: 'Kumbh Sans', sans-serif;
+
     }
 
     .bubble[type="fire"] {
@@ -275,6 +402,10 @@
     .bubble[type="normal"] {
       background-color: #a8a878;
     }
+
+    .bubble[type="poison"] {
+      background-color: #5092B7;
+    }
   }
 
   .card-image {
@@ -298,7 +429,6 @@
   }
 }
 
-/* Responsividad para Card List */
 @media (max-width: 1024px) {
   .custom-card-list {
     width: 90%;
@@ -307,7 +437,30 @@
 
   .custom-card-list .card-content {
     grid-template-columns: 1fr 1fr;
-    height:678px ;
+    height: 678px;
+  }
+}
+
+@media (max-width: 600px) {
+  .custom-card-list {
+    width: 100%;
+    padding: 0.5rem;
+  }
+
+  .custom-card-list .card-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .custom-card-list {
+    width: 90%;
+    height: auto;
+  }
+
+  .custom-card-list .card-content {
+    grid-template-columns: 1fr 1fr;
   }
 }
 

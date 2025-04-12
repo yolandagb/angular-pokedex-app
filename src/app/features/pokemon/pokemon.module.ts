@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardComponent } from 'src/app/shared/components/card/card.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { SearchBarComponent } from 'src/app/shared/components/search-bar/search-bar.component';
+import { SkeletonLoaderComponent } from 'src/app/shared/components/skeleton-loader/skeleton-loader.component';
 
 @NgModule({
   declarations: [PokemonListComponent],
@@ -22,6 +23,6 @@ import { SearchBarComponent } from 'src/app/shared/components/search-bar/search-
     FormsModule,
     ReactiveFormsModule,
     CardComponent, MatPaginatorModule,
-    SearchBarComponent],
+    SearchBarComponent, SkeletonLoaderComponent],
 })
 export class PokemonModule { }

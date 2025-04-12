@@ -40,7 +40,7 @@ export class PokemonDetailComponent implements OnInit {
         next: (details: any) => {
           this.pokemonDetails = details;
   
-          this.pokeApiService.getPokemonSpecies(details.species.url).subscribe({
+          this.pokeApiService.getPokemonSpeciesr(details.species.url).subscribe({
             next: (species: any) => {
               const evoUrl = species.evolution_chain.url;
   

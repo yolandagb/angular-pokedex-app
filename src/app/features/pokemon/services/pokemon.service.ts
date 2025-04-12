@@ -21,7 +21,7 @@ export class PokemonService {
   getPokemonNames(limit: number): Observable<{ name: string }[]> {
     return this.http.get<any>(`${this.apiUrl}/pokemon?limit=${limit}`).pipe(
       map((response: any) => {
-        console.log('API Response:', response); // Verifica la respuesta
+        console.log('API Response:', response); 
         return response.results.map((pokemon: Pokemon) => ({ name: pokemon.name }));
       }),
       catchError((error) => {
@@ -58,11 +58,27 @@ export class PokemonService {
     );
   }
 
-  getPokemonSpecies(url: string) {
+  getPokemonSpecies(name: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/pokemon-species/${name}`).pipe(
+      map((response: any) => {
+        const description = response.flavor_text_entries.find(
+          (entry: any) => entry.language.name === 'en'
+        );
+        return description ? description.flavor_text : 'No description available';
+      }),
+      catchError((error) => {
+        console.error(`Error fetching species info for pokemon ${name}:`, error);
+        return of('No description available');
+      })
+    );
+  }
+
+
+  getPokemonSpeciesr(url: string) {
     return this.http.get(url); // species.url viene completo
   }
   
   getEvolutionChain(url: string) {
-    return this.http.get(url); // También viene como URL completa
+    return this.http.get(url);
   }
 }

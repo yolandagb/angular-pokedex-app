@@ -1,36 +1,31 @@
 <div class="pokemon-list-container">
   <!-- Header -->
-  <div class="header-container">
-    <div class="logo-container">
-      <img src="assets/images/pokedex-app.png" alt="PokeData" class="logo" />
-    </div>
+  <div class="pokemon-list-container__header-container">
+
+    <img src="assets/images/pokedex-app.png" alt="PokeData" class="logo" />
+
   </div>
+
   <!-- Search Bar -->
   <app-search-bar (search)="onSearchPokemon($event)"></app-search-bar>
 
   <!-- Search Results -->
-  <div *ngIf="searchedPokemon && !searchError" class="card mt-3 p-3">
-    <h4 class="text-capitalize">{{ searchedPokemon.name }}</h4>
-    <img [src]="searchedPokemon.sprites.other['official-artwork'].front_default" class="img-fluid" />
-    <p><strong>Altura:</strong> {{ searchedPokemon.height / 10 }} m</p>
-    <p><strong>Peso:</strong> {{ searchedPokemon.weight / 10 }} kg</p>
-    <p><strong>Tipos:</strong>
-      <span *ngFor="let t of searchedPokemon.types">{{ t.type.name }} </span>
-    </p>
+  <div *ngIf="searchedPokemon && !searchError" class="pokemon-list-container__search-results">
+    <app-card [pokemonList]="[searchedPokemon]"></app-card>
   </div>
 
   <!-- Error -->
-  <div *ngIf="searchError" class="text-danger mt-3">
-    {{ searchError }}
+  <div *ngIf="searchError" class="pokemon-list-container__error pokemon-list-container__mt-3">
+    <img src="assets/images/who-is-that-pokemon.png" alt="Who is that Pokémon?"
+      class="pokemon-list-container__no-results-image" />
   </div>
 
-  <!--  -->
-  <div *ngIf="!searchedPokemon && !searchError" class="pokemon-list-container">
-    <app-card [pokemonNames]="pokemonNames"></app-card>
+  <!-- Pokemon List (when no search results) -->
+  <div *ngIf="!searchedPokemon && !searchError">
+    <app-skeleton-loader *ngIf="isLoading" [count]="pageSize"></app-skeleton-loader>
+
+    <app-card *ngIf="!isLoading" [pokemonList]="pokemonList"></app-card>
     <mat-paginator [length]="totalPokemon" [pageSize]="pageSize" [pageSizeOptions]="[20, 40, 60]"
       (page)="onPageChange($event)"></mat-paginator>
   </div>
-
-
-
 </div>

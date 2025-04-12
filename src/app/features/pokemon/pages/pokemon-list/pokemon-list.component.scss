@@ -1,29 +1,175 @@
 .pokemon-list-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1rem;
-}
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
 
-.logo-container {
+  &__header-container {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-.logo{
-    height: 196px;
-}
-.card-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1rem;
-    padding: 1rem;
+    height: 200px;
+  }
 
-}
-
-.mat-paginator {
-    margin-top: 20px;
+  &__search-results {
     display: flex;
     justify-content: center;
+    margin-top: 1rem;
   }
-  
+
+  &__error {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+  }
+
+  &__no-results-image {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+.logo {
+
+  height: 196px;
+
+}
+
+.logo {
+  height: 196px;
+  /* Valor predeterminado para pantallas grandes */
+}
+
+/* Media Queries */
+
+/* Pantallas grandes (de escritorio) */
+@media (max-width: 1200px) {
+  .logo {
+    height: 180px;
+    /* Reducción de tamaño para pantallas grandes, como laptops o tablets grandes */
+  }
+}
+
+/* Tabletas de tamaño mediano (Ej: iPad Pro, etc.) */
+@media (max-width: 1024px) {
+  .logo {
+    height: 160px;
+    /* Logo más pequeño para tabletas */
+  }
+}
+
+/* Tabletas más pequeñas (Ej: iPad, Android) */
+@media (max-width: 768px) {
+  .logo {
+    height: 140px;
+    /* Ajuste para tabletas más pequeñas */
+  }
+}
+
+/* Móviles grandes (Ej: iPhone Plus, dispositivos con pantallas grandes) */
+@media (max-width: 600px) {
+  .logo {
+    height: 120px;
+    /* Logo más pequeño para móviles grandes */
+  }
+}
+
+/* Móviles pequeños (Ej: iPhone SE, Android pequeños) */
+@media (max-width: 480px) {
+  .logo {
+    height: 100px;
+    /* Logo aún más pequeño para móviles pequeños */
+  }
+}
+
+/* Móviles ultra pequeños (Ej: dispositivos de pantalla extremadamente pequeña) */
+@media (max-width: 320px) {
+  .logo {
+    height: 80px;
+    /* Tamaño muy reducido para pantallas muy pequeñas */
+  }
+}
+
+
+mat-paginator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f7f7f7;
+  font-family: 'Kumbh Sans', sans-serif;
+
+  .mat-paginator-range-label,
+  .mat-paginator-page-size {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+  }
+
+  .mat-paginator-navigation-first,
+  .mat-paginator-navigation-last {
+    background-color: #007bff;
+    color: white;
+    border-radius: 50%;
+    padding: 0.5rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  .mat-paginator-navigation-previous:hover,
+  .mat-paginator-navigation-next:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+  }
+
+  .mat-select {
+    border-radius: 4px;
+    background-color: #f0f0f0;
+    padding: 0.3rem 1rem;
+    font-size: 1rem;
+    margin-left: 1rem;
+  }
+
+  .mat-paginator-range-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  /* Media Queries */
+  @media (max-width: 768px) {
+    padding: 0.5rem;
+
+    .mat-paginator-range-label,
+    .mat-paginator-page-size {
+      font-size: 0.875rem;
+    }
+
+    .mat-paginator-navigation-first,
+    .mat-paginator-navigation-last {
+      padding: 0.4rem;
+    }
+
+    .mat-select {
+      font-size: 0.875rem;
+      padding: 0.3rem 0.8rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+
+    .mat-paginator-range-label,
+    .mat-paginator-page-size {
+      font-size: 0.75rem;
+    }
+
+    .mat-paginator-navigation-first,
+    .mat-paginator-navigation-last {
+      padding: 0.3rem;
+    }
+
+    .mat-select {
+      font-size: 0.75rem;
+      padding: 0.3rem 0.6rem;
+    }
+  }
+}

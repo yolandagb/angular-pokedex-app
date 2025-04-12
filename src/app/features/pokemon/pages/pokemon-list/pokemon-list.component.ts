@@ -1,101 +1,99 @@
 import { Component, OnInit } from '@angular/core';
 import { PokemonService } from '../../services/pokemon.service';
-import { FormControl } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, forkJoin } from 'rxjs';
 import { PageEvent } from '@angular/material/paginator';
-import { SearchBarComponent } from 'src/app/shared/components/search-bar/search-bar.component';
 import { PokemonDetails } from '../../models/pokemon.model';
+import { forkJoin, map, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-pokemon-list',
   templateUrl: './pokemon-list.component.html',
   styleUrls: ['./pokemon-list.component.scss'],
-  
 })
 export class PokemonListComponent implements OnInit {
+  pokemonList: any;
+  isLoading = false;
 
-  showCards: boolean = true
-  pokemonNames: { name: string }[] = [];
-  isLoading = true;
-
-  totalPokemon: number = 0;
+  totalPokemon: number = 1000; 
   pageSize: number = 20;
   currentPage: number = 0;
- 
+
+  searchedPokemon: any = null;
+  searchError: string = '';
 
   constructor(private pokemonService: PokemonService) {}
 
   ngOnInit(): void {
-    this.fetchPokemonNames();
-  
+    this.loadPokemonList();
   }
 
-fetchPokemonNames(): void {
-  const offset = this.currentPage * this.pageSize;
-  this.isLoading = true;
+  loadPokemonList(): void {
+    this.isLoading = true;
+    const offset = this.currentPage * this.pageSize;
 
-  this.pokemonService.getPokemonList(this.pageSize, offset).subscribe({
-    next: (pokemonList) => {
-      console.log('Pokemon List:', pokemonList);
-      const infoRequests = pokemonList.map((pokemon: PokemonDetails) =>
-        this.pokemonService.getPokemonInfo(pokemon.name)
-      );
+    this.pokemonService.getPokemonList(this.pageSize, offset).subscribe({
+      next: (results) => {
+        const details$ = results.map((pokemon: PokemonDetails) =>
+          this.pokemonService.getPokemonInfo(pokemon.name).pipe(
+            switchMap((info) =>
+              this.pokemonService.getPokemonSpecies(pokemon.name).pipe(
+                map((species) => ({ ...info, description: species }))
+              )
+            )
+          )
+        );
 
-      
-      forkJoin(infoRequests).subscribe({
-        next: (pokemonInfos:any) => {
-          this.pokemonNames = pokemonInfos; 
-          this.isLoading = false;
-          this.totalPokemon = 1000;
-        },
-        error: (error) => {
-          console.error('Error fetching detailed Pokémon info:', error);
-          this.isLoading = false;
-        },
-      });
-    },
-    error: (error) => {
-      console.error('Error fetching Pokémon list:', error);
-      this.isLoading = false;
-    },
-  });
-}
-
+        forkJoin(details$).subscribe({
+          next: (data) => {
+            this.pokemonList = data;
+            this.isLoading = false;
+          },
+          error: (err) => {
+            console.error('Error loading Pokémon details', err);
+            this.isLoading = false;
+          },
+        });
+      },
+      error: (err) => {
+        console.error('Error fetching Pokémon list:', err);
+        this.isLoading = false;
+      },
+    });
+  }
 
   onPageChange(event: PageEvent): void {
     this.pageSize = event.pageSize;
     this.currentPage = event.pageIndex;
-    this.fetchPokemonNames();
+    this.loadPokemonList();
   }
 
-  searchedPokemon: any = null;
-  searchError: string = '';
-  
+  goToFirstPage(): void {
+    this.currentPage = 0;
+    this.loadPokemonList();
+  }
+
+  goToLastPage(): void {
+    const lastPage = Math.floor(this.totalPokemon / this.pageSize);
+    this.currentPage = lastPage;
+    this.loadPokemonList();
+  }
+
   onSearchPokemon(term: string): void {
-    const trimmedTerm = term?.trim().toLowerCase();
-  
-    if (!trimmedTerm) {
+    const search = term.trim().toLowerCase();
+    if (!search) {
       this.searchedPokemon = null;
       this.searchError = '';
-      this.fetchPokemonNames(); // ¡Recarga la lista completa!
+      this.loadPokemonList();
       return;
     }
-  
-    this.pokemonService.getPokemonInfo(trimmedTerm).subscribe({
-      next: (pokemon) => {
-        this.searchedPokemon = pokemon;
-        this.searchError = '';
-      },
-      error: () => {
-        this.searchedPokemon = null;
-        this.searchError = 'pokemon not found 😔';
-      }
-    });
+
+    const match = this.pokemonList.find((p: any) => p.name.toLowerCase().includes(search));
+
+    if (match) {
+      this.searchedPokemon = match;
+      this.searchError = '';
+    } else {
+      this.searchedPokemon = null;
+      this.searchError = `Pokémon "${term}" no encontrado 😔`;
+    }
   }
-  
-  
-
-
-
-  
 }

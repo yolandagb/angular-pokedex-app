@@ -16,10 +16,7 @@ export class CardComponent {
   @Input() pokemonDetails: any = null;
   constructor(private router: Router) { }
   ngOnInit(): void {
-    if (this.pokemonNames?.length && this.pokemonDetails) {
-      console.warn(
-        '[CardComponent] Recibió tanto "pokemonNames" como "singlePokemon". Se recomienda usar solo uno a la vez.'
-      );
+    if (this.pokemonNames?.length && this.pokemonDetails) {;
     }
   }
 
