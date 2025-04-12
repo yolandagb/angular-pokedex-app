@@ -12,11 +12,11 @@ import { Router } from '@angular/router';
   imports: [MatCardModule, CommonModule, CapitalizePipe],
 })
 export class CardComponent {
-  @Input() pokemonNames: any[] = [];
+  @Input() pokemonList: any[] = [];
   @Input() pokemonDetails: any = null;
   constructor(private router: Router) { }
   ngOnInit(): void {
-    if (this.pokemonNames?.length && this.pokemonDetails) {;
+    if (this.pokemonList?.length && this.pokemonDetails) {;
     }
   }
 
