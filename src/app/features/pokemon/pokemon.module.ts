@@ -14,6 +14,7 @@ import { CardComponent } from 'src/app/shared/components/card/card.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { SearchBarComponent } from 'src/app/shared/components/search-bar/search-bar.component';
 import { SkeletonLoaderComponent } from 'src/app/shared/components/skeleton-loader/skeleton-loader.component';
+import { DetailDialogComponent } from 'src/app/shared/components/detail-dialog/detail-dialog.component';
 
 @NgModule({
   declarations: [PokemonListComponent],
@@ -23,6 +24,6 @@ import { SkeletonLoaderComponent } from 'src/app/shared/components/skeleton-load
     FormsModule,
     ReactiveFormsModule,
     CardComponent, MatPaginatorModule,
-    SearchBarComponent, SkeletonLoaderComponent],
+    SearchBarComponent, SkeletonLoaderComponent,DetailDialogComponent],
 })
 export class PokemonModule { }
