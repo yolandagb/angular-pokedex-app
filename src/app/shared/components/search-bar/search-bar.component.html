@@ -1,5 +1,15 @@
 <div class="search-bar-container">
-  <input class="search-input" type="text" placeholder="search eg, ditto or pikachu..." [formControl]="searchControl" />
+  <input
+    class="search-input"
+    type="text"
+    placeholder="Search e.g., ditto or pikachu..."
+    [formControl]="searchControl"
+  />
+
+  <button *ngIf="searchControl.value" class="clear-button" (click)="clearSearch()" aria-label="Clear search">
+    <mat-icon>close</mat-icon>
+  </button>
+
   <button class="search-button">
     <mat-icon>search</mat-icon>
   </button>

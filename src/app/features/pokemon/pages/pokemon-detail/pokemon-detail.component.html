@@ -1,9 +1,13 @@
 <div class="header-container">
   <div class="logo-container">
-    <img src="assets/images/pokedex-app.png" alt="PokeData" class="logo" />
+    <img src="assets/images/pokedex-app.png" alt="PokeData" class="logo" (click)="navigateToHome()" />
   </div>
 </div>
-<app-card [pokemonDetails]="pokemonDetails"></app-card>
+
+
+<app-skeleton-dialog *ngIf="isLoading" [statCount]="5" [showStats]="true" imageHeight="140px"></app-skeleton-dialog>
+<app-card *ngIf="!isLoading && pokemonDetails" [pokemonDetails]="pokemonDetails"></app-card>
+
 
 
 <div class="evolution-container" *ngIf="evolutionChain.length">
