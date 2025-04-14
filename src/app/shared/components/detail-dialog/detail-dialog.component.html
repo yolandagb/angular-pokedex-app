@@ -1,0 +1,24 @@
+<ng-container *ngIf="pokemonDetails">
+  <div class="custom-dialog" [attr.type]="pokemonDetails.types[0]?.type.name">
+
+    <div class="custom-dialog__image">
+      <img class="custom-dialog__sprite" [src]="pokemonDetails?.sprites?.other?.showdown?.front_default"
+        alt="{{ pokemonDetails.name }}" />
+    </div>
+    <div class="custom-dialog__info">
+      <span class="custom-dialog__id">#00{{ pokemonDetails.id }}</span>
+      <h3 class="custom-dialog__name">{{ pokemonDetails?.name | capitalize }}</h3>
+      <div class="pokemon-card__info">
+        <p class="bubble" *ngFor="let type of pokemonDetails.types" [attr.type]="type.type.name">
+          {{ type.type.name | capitalize }}
+        </p>
+      </div>
+      <p class="custom-dialog__description">{{ pokemonDetails.description | capitalize }}</p>
+      <p><strong>Height:</strong> {{ pokemonDetails.height }} cm</p>
+      <p><strong>Weight:</strong> {{ pokemonDetails.weight }} kg</p>
+      <p><strong>Abilities:</strong> {{ pokemonDetails.abilities }}</p>
+      <p><strong>Stats:</strong> {{ pokemonDetails.stats.value }}</p>
+    </div>
+
+  </div>
+</ng-container>

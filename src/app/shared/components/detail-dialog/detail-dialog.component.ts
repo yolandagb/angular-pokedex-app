@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-detail-dialog',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,CapitalizePipe],
   templateUrl: './detail-dialog.component.html',
   styleUrls: ['./detail-dialog.component.scss']
 })
@@ -19,8 +19,6 @@ export class DetailDialogComponent {
   ngOnInit(): void {
     if (this.pokemonList?.length && this.pokemonDetails) {;
     }
-  
-
 }
 
 

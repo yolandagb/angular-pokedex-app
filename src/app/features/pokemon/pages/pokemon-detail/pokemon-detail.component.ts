@@ -13,20 +13,20 @@ import { SkeletonDialogComponent } from 'src/app/shared/components/skeleton-dial
   standalone: true,
   templateUrl: './pokemon-detail.component.html',
   styleUrls: ['./pokemon-detail.component.scss'],
-  imports: [CapitalizePipe, CardComponent,CommonModule, MatIconModule,SkeletonDialogComponent],
+  imports: [CapitalizePipe, CardComponent, CommonModule, MatIconModule, SkeletonDialogComponent, DetailDialogComponent],
 })
 export class PokemonDetailComponent implements OnInit {
-  pokemonName: string | null = null; 
-  pokemonDetails: any = null; 
-  evolutionChain:any[] = [];
+  pokemonName: string | null = null;
+  pokemonDetails: any = null;
+  evolutionChain: any[] = [];
   isLoading: boolean = true;
 
   constructor(
     private route: ActivatedRoute,
-    private pokeApiService: PokemonService,
-  private router: Router
+    private pokemonService: PokemonService,
+    private router: Router
 
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -39,45 +39,45 @@ export class PokemonDetailComponent implements OnInit {
       }
     });
   }
-  
+
   navigateToDetail(id: number): void {
     this.router.navigate(['/pokemon', id]);
   }
 
-  navigateToHome(){
+  navigateToHome() {
     this.router.navigate(['/pokemon']);
   }
 
   private getPokemonDetails(): void {
     if (this.pokemonName) {
-      this.pokeApiService.getPokemonInfo(this.pokemonName).subscribe({
+      this.pokemonService.getPokemonInfo(this.pokemonName).subscribe({
         next: (details: any) => {
           this.pokemonDetails = details;
-  
-          this.pokeApiService.getPokemonSpeciesr(details.species.url).subscribe({
+
+          this.pokemonService.getPokemonSpeciesr(details.species.url).subscribe({
             next: (species: any) => {
               const evoUrl = species.evolution_chain.url;
-  
-              this.pokeApiService.getEvolutionChain(evoUrl).subscribe({
+
+              this.pokemonService.getEvolutionChain(evoUrl).subscribe({
                 next: (evolutionData: any) => {
                   this.extractEvolutionsFromChain(evolutionData.chain);
                   this.isLoading = false;
                 },
                 error: (err) => {
                   console.error('Error evolution chain:', err);
-                  this.isLoading = false; 
+                  this.isLoading = false;
                 },
               });
             },
             error: (err) => {
               console.error('Error evolution chain:', err);
-              this.isLoading = false; 
+              this.isLoading = false;
             },
           });
         },
         error: (err) => {
           console.error('Error evolution chain:', err);
-          this.isLoading = false; 
+          this.isLoading = false;
         },
       });
     }
@@ -85,18 +85,18 @@ export class PokemonDetailComponent implements OnInit {
 
   private extractEvolutionsFromChain(chain: any): void {
     const evolutions: string[] = [];
-  
+
     const traverseChain = (node: any) => {
       evolutions.push(node.species.name);
       if (node.evolves_to.length) {
         node.evolves_to.forEach((child: any) => traverseChain(child));
       }
     };
-  
-    traverseChain(chain); 
-  
+
+    traverseChain(chain);
+
     evolutions.forEach(name => {
-      this.pokeApiService.getPokemonInfo(name).subscribe((poke: any) => {
+      this.pokemonService.getPokemonInfo(name).subscribe((poke: any) => {
         this.evolutionChain.push({
           name: poke.name,
           id: poke.id,
@@ -105,9 +105,9 @@ export class PokemonDetailComponent implements OnInit {
       });
     });
   }
-  
-  
-  
-  
-  
+
+
+
+
+
 }
