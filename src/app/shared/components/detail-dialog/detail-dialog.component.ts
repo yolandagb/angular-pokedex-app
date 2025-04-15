@@ -14,6 +14,9 @@ import { Router } from '@angular/router';
 export class DetailDialogComponent {
   @Input() pokemonDetails: any = null;
   @Input() pokemonList: any = null;
+  @Input() description: string = '';
+  @Input() abilities: string[] = [];
+  @Input() stats: any[] = [];
   constructor(private router: Router) { }
 
   ngOnInit(): void {

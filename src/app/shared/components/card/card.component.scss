@@ -19,6 +19,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+  cursor: pointer;
 
   &:hover {
     transform: translateY(-5px);
@@ -138,6 +139,16 @@
 
 
 /* Tablet */
+
+@media(max-width: 1280px) {
+  .grid-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3.5rem;
+    padding: 2rem;
+    justify-items: center;  }
+}
+
 @media (max-width: 1024px) {
   .grid-wrapper {
     gap: 1.5rem;
@@ -179,11 +190,9 @@
 /* iPad Mini y otros dispositivos similares */
 @media (max-width: 1024px) {
 
-  /* Modo retrato para tabletas más pequeñas */
   .grid-wrapper {
     grid-template-columns: repeat(2, 1fr);
-    /* Dos columnas */
-    gap: 1.5rem;
+    gap: 3.5rem;
   }
 
   .custom-card {
@@ -210,11 +219,36 @@
   }
 }
 
+@media (max-width: 768px) {
+  .grid-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3.5rem;
+  }
+
+  .custom-card .card-content {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .custom-card .pokemon-name {
+    font-size: 1.1rem;
+  }
+
+  .custom-card .bubble {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.7rem;
+  }
+
+  .custom-card .card-image .pokemon-image {
+    width: 100px;
+    height: 100px;
+  }
+
+}
+
 
 /* Mobile */
 @media (max-width: 600px) {
 
-  /* Teléfonos móviles */
   .grid-wrapper {
     grid-template-columns: 1fr;
     /* Solo una columna */
@@ -222,7 +256,6 @@
   }
 
   .custom-card {
-    max-width: 100%;
     padding: 0.5rem;
   }
 
@@ -287,8 +320,7 @@
 /* Mobile */
 @media (max-width: 600px) {
   .custom-card {
-    max-width: 100%;
-    padding: 0.5rem;
+    padding: 1 rem;
     margin: 0 0.5rem;
   }
 
@@ -318,6 +350,3 @@
     font-size: 13px;
   }
 }
-
-
-

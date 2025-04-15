@@ -1,3 +1,5 @@
+
+
 <ng-container *ngIf="pokemonDetails">
   <div class="custom-dialog" [attr.type]="pokemonDetails.types[0]?.type.name">
 
@@ -5,20 +7,47 @@
       <img class="custom-dialog__sprite" [src]="pokemonDetails?.sprites?.other?.showdown?.front_default"
         alt="{{ pokemonDetails.name }}" />
     </div>
+
     <div class="custom-dialog__info">
-      <span class="custom-dialog__id">#00{{ pokemonDetails.id }}</span>
-      <h3 class="custom-dialog__name">{{ pokemonDetails?.name | capitalize }}</h3>
+      <span class="custom-dialog__id">#{{ pokemonDetails.id | number: '3.0' }}</span>
+      <h3 class="custom-dialog__name">{{ pokemonDetails.name | capitalize }}</h3>
+
+      <!-- Types -->
       <div class="pokemon-card__info">
         <p class="bubble" *ngFor="let type of pokemonDetails.types" [attr.type]="type.type.name">
           {{ type.type.name | capitalize }}
         </p>
       </div>
-      <p class="custom-dialog__description">{{ pokemonDetails.description | capitalize }}</p>
-      <p><strong>Height:</strong> {{ pokemonDetails.height }} cm</p>
-      <p><strong>Weight:</strong> {{ pokemonDetails.weight }} kg</p>
-      <p><strong>Abilities:</strong> {{ pokemonDetails.abilities }}</p>
-      <p><strong>Stats:</strong> {{ pokemonDetails.stats.value }}</p>
-    </div>
 
+      <!-- Description -->
+      <p class="custom-dialog__description">{{ description | capitalize }}</p>
+
+      <!-- Height & Weight -->
+      <div class="custom-dialog__details">
+        <span>Height: {{ pokemonDetails.height }} cm</span>
+      </div>
+      <div class="custom-dialog__details">
+        <span>Weight: {{ pokemonDetails.weight }} kg</span>
+      </div>
+
+      <!-- Abilities -->
+      <div class="custom-dialog_i_nfo">
+        <strong>Abilities:</strong>
+        <ul>
+          <li *ngFor="let ability of abilities">{{ ability | capitalize }}</li>
+        </ul>
+      </div>
+
+      <!-- Stats -->
+      <div class="custom-dialo__info">
+        <strong>Stats:</strong>
+        <ul>
+          <li *ngFor="let stat of stats">
+            {{ stat.stat.name | capitalize }}: {{ stat.base_stat }}
+          </li>
+        </ul>
+      </div>
+
+    </div>
   </div>
 </ng-container>
