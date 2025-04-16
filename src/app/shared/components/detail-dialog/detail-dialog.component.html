@@ -1,5 +1,3 @@
-
-
 <ng-container *ngIf="pokemonDetails">
   <div class="custom-dialog" [attr.type]="pokemonDetails.types[0]?.type.name">
 
@@ -13,7 +11,7 @@
       <h3 class="custom-dialog__name">{{ pokemonDetails.name | capitalize }}</h3>
 
       <!-- Types -->
-      <div class="pokemon-card__info">
+      <div class="custom-dialog__properties">
         <p class="bubble" *ngFor="let type of pokemonDetails.types" [attr.type]="type.type.name">
           {{ type.type.name | capitalize }}
         </p>
@@ -23,30 +21,34 @@
       <p class="custom-dialog__description">{{ description | capitalize }}</p>
 
       <!-- Height & Weight -->
-      <div class="custom-dialog__details">
-        <span>Height: {{ pokemonDetails.height }} cm</span>
-      </div>
-      <div class="custom-dialog__details">
-        <span>Weight: {{ pokemonDetails.weight }} kg</span>
-      </div>
+      <div class="custom-dialog__properties">
+        <div class="custom-dialog__details">
+          <span><strong>Height</strong></span>
+          <span>{{pokemonDetails.height }} cm</span>
 
-      <!-- Abilities -->
-      <div class="custom-dialog_i_nfo">
-        <strong>Abilities:</strong>
-        <ul>
-          <li *ngFor="let ability of abilities">{{ ability | capitalize }}</li>
-        </ul>
+        </div>
+        <div class="custom-dialog__details">
+          <span><strong>Weight</strong></span>
+          <span>{{ pokemonDetails.weight }} kg</span>
+        </div>
+
       </div>
 
       <!-- Stats -->
-      <div class="custom-dialo__info">
-        <strong>Stats:</strong>
-        <ul>
-          <li *ngFor="let stat of stats">
-            {{ stat.stat.name | capitalize }}: {{ stat.base_stat }}
-          </li>
-        </ul>
+      <span class="custom-dialog__p">Stats</span>
+      <div class="custom-dialog__stats-properties">
+        <p class="stats" *ngFor="let stat of stats" [attr.type]="stat.stat.name">
+          {{ stat.stat.name | capitalize }}: {{ stat.base_stat }}
+        </p>
       </div>
+
+
+      <!-- Abilities -->
+      <span class="custom-dialog__p">Abilities</span>
+      <div class="custom-dialog__properties">
+        <p class="custom-dialog__details" *ngFor="let ability of abilities">{{ ability | capitalize }}</p>
+      </div>
+
 
     </div>
   </div>

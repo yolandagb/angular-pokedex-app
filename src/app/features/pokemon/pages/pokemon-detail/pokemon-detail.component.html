@@ -6,7 +6,8 @@
 
 
 <app-skeleton-dialog *ngIf="isLoading" [statCount]="5" [showStats]="true" imageHeight="140px"></app-skeleton-dialog>
-<app-detail-dialog *ngIf="!isLoading && pokemonDetails" [pokemonDetails]="pokemonDetails"></app-detail-dialog>
+<app-detail-dialog *ngIf="!isLoading && pokemonDetails" [pokemonDetails]="pokemonDetails" [description]="description"
+  [stats]="stats" [abilities]="abilities"></app-detail-dialog>
 
 
 

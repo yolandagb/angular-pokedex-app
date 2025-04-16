@@ -9,6 +9,8 @@
     align-items: center;
     justify-content: center;
     height: 200px;
+    top: 1.5rem;
+    position: relative;
   }
 
   &__search-results {
@@ -30,14 +32,7 @@
 }
 
 .logo {
-
   height: 196px;
-
-}
-
-.logo {
-  height: 196px;
-  /* Valor predeterminado para pantallas grandes */
 }
 
 /* Media Queries */
@@ -50,43 +45,33 @@
   }
 }
 
-/* Tabletas de tamaño mediano (Ej: iPad Pro, etc.) */
 @media (max-width: 1024px) {
   .logo {
     height: 160px;
-    /* Logo más pequeño para tabletas */
   }
 }
 
-/* Tabletas más pequeñas (Ej: iPad, Android) */
 @media (max-width: 768px) {
   .logo {
     height: 140px;
-    /* Ajuste para tabletas más pequeñas */
   }
 }
 
-/* Móviles grandes (Ej: iPhone Plus, dispositivos con pantallas grandes) */
 @media (max-width: 600px) {
   .logo {
     height: 120px;
-    /* Logo más pequeño para móviles grandes */
   }
 }
 
-/* Móviles pequeños (Ej: iPhone SE, Android pequeños) */
 @media (max-width: 480px) {
   .logo {
     height: 100px;
-    /* Logo aún más pequeño para móviles pequeños */
   }
 }
 
-/* Móviles ultra pequeños (Ej: dispositivos de pantalla extremadamente pequeña) */
 @media (max-width: 320px) {
   .logo {
     height: 80px;
-    /* Tamaño muy reducido para pantallas muy pequeñas */
   }
 }
 
@@ -98,21 +83,29 @@ mat-paginator {
   padding: 1rem;
   background-color: #f7f7f7;
   font-family: 'Kumbh Sans', sans-serif;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  white-space: nowrap;
+  gap: 1rem;
 
   .mat-paginator-range-label,
   .mat-paginator-page-size {
     font-size: 1rem;
     font-weight: bold;
     color: #333;
+    white-space: nowrap;
   }
 
   .mat-paginator-navigation-first,
-  .mat-paginator-navigation-last {
+  .mat-paginator-navigation-last,
+  .mat-paginator-navigation-previous,
+  .mat-paginator-navigation-next {
     background-color: #007bff;
     color: white;
     border-radius: 50%;
     padding: 0.5rem;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    flex-shrink: 0;
   }
 
   .mat-paginator-navigation-previous:hover,
@@ -127,49 +120,106 @@ mat-paginator {
     padding: 0.3rem 1rem;
     font-size: 1rem;
     margin-left: 1rem;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 
   .mat-paginator-range-actions {
     display: flex;
     align-items: center;
     gap: 1rem;
+    flex-wrap: nowrap;
   }
 
   /* Media Queries */
+  @media (max-width: 1024px) {
+    padding: 0.8rem;
+
+    .mat-paginator-range-label,
+    .mat-paginator-page-size {
+      font-size: 0.95rem;
+    }
+
+    .mat-select {
+      font-size: 0.95rem;
+      padding: 0.3rem 0.9rem;
+    }
+  }
+
   @media (max-width: 768px) {
-    padding: 0.5rem;
+    padding: 0.6rem;
 
     .mat-paginator-range-label,
     .mat-paginator-page-size {
       font-size: 0.875rem;
-    }
-
-    .mat-paginator-navigation-first,
-    .mat-paginator-navigation-last {
-      padding: 0.4rem;
     }
 
     .mat-select {
       font-size: 0.875rem;
       padding: 0.3rem 0.8rem;
     }
+
+    .mat-paginator-navigation-first,
+    .mat-paginator-navigation-last {
+      padding: 0.4rem;
+    }
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 600px) {
+    padding: 0.5rem;
+    gap: 0.5rem;
 
     .mat-paginator-range-label,
     .mat-paginator-page-size {
-      font-size: 0.75rem;
+      font-size: 0.8rem;
+    }
+
+    .mat-select {
+      font-size: 0.8rem;
+      padding: 0.2rem 0.6rem;
     }
 
     .mat-paginator-navigation-first,
     .mat-paginator-navigation-last {
       padding: 0.3rem;
     }
+  }
+
+  @media (max-width: 480px) {
+    gap: 0.3rem;
+
+    .mat-paginator-range-label,
+    .mat-paginator-page-size {
+      font-size: 0.75rem;
+    }
 
     .mat-select {
       font-size: 0.75rem;
-      padding: 0.3rem 0.6rem;
+      padding: 0.2rem 0.5rem;
+    }
+
+    .mat-paginator-navigation-first,
+    .mat-paginator-navigation-last {
+      padding: 0.25rem;
+    }
+  }
+
+  @media (max-width: 360px) {
+    gap: 0.2rem;
+
+    .mat-paginator-range-label,
+    .mat-paginator-page-size {
+      font-size: 0.7rem;
+    }
+
+    .mat-select {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .mat-paginator-navigation-first,
+    .mat-paginator-navigation-last {
+      padding: 0.2rem;
     }
   }
 }

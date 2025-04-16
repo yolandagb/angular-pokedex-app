@@ -1,52 +1,41 @@
 .custom-dialog {
-  width: 1071px;
-  height: 678px;
+  width: 785px;
+  height: 522px;
+  margin: 20px;
   background: #FFFFFF;
-  border-radius: 12px;
+  border-radius: 5px;
   padding: 1rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
 
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-  }
 
-
-
-  .custom-dialog__image {
+  &__image {
     height: 100%;
     display: flex;
+    align-items: center;
 
   }
 
-  .custom-dialog__sprite {
-    width: 123px;
-    height: 120px;
+  &__sprite {
+    width: 160px;
+    height: 150px;
     margin: 0 auto 0.5rem;
   }
 
-  // .c {
-  //   font-size: 1.1rem;
-  //   color: #000000;
-  //   font-family: 'Kumbh Sans', sans-serif;
-
-  // }
-
-  .custom-dialog__id {
+  &__id {
     font-size: 15px;
     font-weight: 600;
     color: #363131;
     text-align: center;
     display: flex;
     flex-direction: row;
-    margin: 18px;
+    margin: 0px 18px 0 0;
     justify-content: flex-end;
   }
 
-  .custom-dialog__name {
+  &__name {
     font-size: 1.1rem;
     font-weight: 600;
     color: #000000;
@@ -116,24 +105,112 @@
     background-color: #5092B7;
   }
 
-  .custom-dialog__details{
+  &__properties {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+
+  &__p {
     display: inline-block;
     padding: 0.3rem 0.8rem;
     font-size: 0.9rem;
     font-weight: 600;
-    color: 000000;
+    color: #000000;
+    font-family: 'Kumbh Sans', sans-serif;
+  }
+
+  &__details {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    max-width: 160px;
+    font-size: 0.9rem;
+    color: #000000;
     background-color: #F6F8FC;
-    border-radius: 20px;
+    border-radius: 5px;
     text-align: center;
     margin-bottom: 0.5rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     font-family: 'Kumbh Sans', sans-serif;
 
+  }
 
+  &__abilities {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__description {
+    font-family: 'Kumbh Sans', sans-serif;
+    font-size: 13px;
+    color: #000000;
+    font-weight: 400;
 
   }
 
+  &__stats-properties {
+    gap: 0.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    font-family: 'Kumbh Sans', sans-serif;
+
+  }
+
+  .stats {
+    padding: 0.3rem 0.8rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #000000;
+    background-color: #007bff;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+  }
+
+  .stats[type="hp"] {
+    background-color: #DF2140;
+  }
+
+  .stats[type="attack"] {
+    background-color: #FF994D;
+  }
+
+  .stats[type="defense"] {
+    background-color: #EECD3D;
+  }
+
+  .stats[type="special-attack"] {
+    background-color: #85DDFF;
+  }
+
+  .stats[type="special-defense"] {
+    background-color: #96DA83;
+  }
+  .stats[type="speed"] {
+    background-color: #FB94A8;
+  }
+
+  .stats[type="dragon"] {
+    background-color: #7038f8;
+  }
+
+  .stats[type="dark"] {
+    background-color: #705848;
+  }
+
+  .stats[type="fairy"] {
+    background-color: #ee99ac;
+  }
+
+  .stats[type="normal"] {
+    background-color: #a8a878;
+  }
+
+  .stats[type="poison"] {
+    background-color: #5092B7;
+  }
+
 }
+
 
 
 
@@ -156,7 +233,7 @@
     width: 90%;
     height: 478px;
   }
-  
+
   .custom-dialog .card-content {
     grid-template-columns: 1fr 1fr;
   }
@@ -165,7 +242,7 @@
 @media (max-width: 600px) {
   .custom-dialog {
     width: 90%;
-    height: 480px;
+    height: 638px;
   }
 
   .custom-dialog .card-content {

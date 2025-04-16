@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-detail-dialog',
   standalone: true,
-  imports: [CommonModule,CapitalizePipe],
+  imports: [CommonModule, CapitalizePipe],
   templateUrl: './detail-dialog.component.html',
   styleUrls: ['./detail-dialog.component.scss']
 })
@@ -17,12 +17,14 @@ export class DetailDialogComponent {
   @Input() description: string = '';
   @Input() abilities: string[] = [];
   @Input() stats: any[] = [];
+
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    if (this.pokemonList?.length && this.pokemonDetails) {;
+    if (this.pokemonList?.length && this.pokemonDetails) {
+
     }
-}
+  }
 
 
 }

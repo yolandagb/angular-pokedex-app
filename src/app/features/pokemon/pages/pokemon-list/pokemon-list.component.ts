@@ -31,6 +31,7 @@ export class PokemonListComponent implements OnInit {
     const offset = this.currentPage * this.pageSize;
 
     this.pokemonService.getPokemonList(this.pageSize, offset).subscribe({
+      
       next: (results) => {
         const details$ = results.map((pokemon: PokemonDetails) =>
           this.pokemonService.getPokemonInfo(pokemon.name).pipe(
@@ -66,17 +67,6 @@ export class PokemonListComponent implements OnInit {
     this.loadPokemonList();
   }
 
-  goToFirstPage(): void {
-    this.currentPage = 0;
-    this.loadPokemonList();
-  }
-
-  goToLastPage(): void {
-    const lastPage = Math.floor(this.totalPokemon / this.pageSize);
-    this.currentPage = lastPage;
-    this.loadPokemonList();
-  }
-
   onSearchPokemon(term: string): void {
     const search = term.trim().toLowerCase();
     if (!search) {
@@ -93,7 +83,7 @@ export class PokemonListComponent implements OnInit {
       this.searchError = '';
     } else {
       this.searchedPokemon = null;
-      this.searchError = `Pokémon "${term}" no encontrado 😔`;
+      this.searchError = `Pokémon "${term}" not found.`;
     }
   }
 }

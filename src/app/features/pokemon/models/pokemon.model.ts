@@ -24,3 +24,16 @@ export interface StatRange {
   min: number;
   max: number;
 }
+export interface pokemonMeasurements {
+  label: string, value: number, unit: string,
+
+}
+export interface PokemonSpecies {
+  evolution_chain: {
+    url: string;
+  };
+  flavor_text_entries: Array<{
+    language: { name: string };
+    flavor_text: string;
+  }>;
+}
