@@ -1,6 +1,25 @@
 <div class="header-container">
-  <div class="logo-container">
+  <div class="header-container__logo-container">
     <img src="assets/images/pokedex-app.png" alt="PokeData" class="logo" (click)="navigateToHome()" />
+  </div>
+  <div class="header-container__menu">
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menú">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="navigateToHome()">
+        <mat-icon>home</mat-icon>
+        <span>Home</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>info</mat-icon>
+        <span>About</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>favorite</mat-icon>
+        <span>Favs</span>
+      </button>
+    </mat-menu>
   </div>
 </div>
 

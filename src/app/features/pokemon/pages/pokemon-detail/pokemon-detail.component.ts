@@ -8,13 +8,18 @@ import { MatIconModule } from '@angular/material/icon';
 import { DetailDialogComponent } from 'src/app/shared/components/detail-dialog/detail-dialog.component';
 import { SkeletonDialogComponent } from 'src/app/shared/components/skeleton-dialog/skeleton-dialog.component';
 import { PokemonSpecies } from '../../models/pokemon.model';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-pokemon-detail',
   standalone: true,
   templateUrl: './pokemon-detail.component.html',
   styleUrls: ['./pokemon-detail.component.scss'],
-  imports: [CapitalizePipe, CardComponent, CommonModule, MatIconModule, SkeletonDialogComponent, DetailDialogComponent],
+  imports: [CapitalizePipe, CardComponent, CommonModule, SkeletonDialogComponent, DetailDialogComponent, MatIconModule,
+    MatMenuModule,
+    MatButtonModule,
+  ],
 })
 export class PokemonDetailComponent implements OnInit {
   pokemonName: string | null = null;

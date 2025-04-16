@@ -9,7 +9,7 @@
         </div>
         <h3 class="pokemon-card__name">{{ pokemon.name | capitalize }}</h3>
         <p class="pokemon-card__description">{{ pokemon.description | capitalize }}</p>
-        <p class="bubble" [attr.data-type]="pokemon.types[0]?.type.name" (click)="navigateToDetail(pokemon.id)">
+        <p class="bubble" [attr.type]="pokemon.types[0]?.type.name" (click)="navigateToDetail(pokemon.id)">
           Know More
         </p>
       </div>

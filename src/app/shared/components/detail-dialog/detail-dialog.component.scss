@@ -133,6 +133,8 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     font-family: 'Kumbh Sans', sans-serif;
 
+
+
   }
 
   &__abilities {
@@ -187,26 +189,6 @@
   }
   .stats[type="speed"] {
     background-color: #FB94A8;
-  }
-
-  .stats[type="dragon"] {
-    background-color: #7038f8;
-  }
-
-  .stats[type="dark"] {
-    background-color: #705848;
-  }
-
-  .stats[type="fairy"] {
-    background-color: #ee99ac;
-  }
-
-  .stats[type="normal"] {
-    background-color: #a8a878;
-  }
-
-  .stats[type="poison"] {
-    background-color: #5092B7;
   }
 
 }

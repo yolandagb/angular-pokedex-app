@@ -24,7 +24,7 @@
   <div *ngIf="!searchedPokemon && !searchError">
     <app-skeleton-loader *ngIf="isLoading" [count]="pageSize"></app-skeleton-loader>
     <app-card *ngIf="!isLoading" [pokemonList]="pokemonList"></app-card>
-    <mat-paginator [length]="totalPokemon" [pageSize]="pageSize" [pageSizeOptions]="[20, 40, 60]"
+    <mat-paginator [length]="totalPokemon" [pageSize]="pageSize" [pageSizeOptions]="[20, 40, 60]" [showFirstLastButtons]="true"
       (page)="onPageChange($event)"></mat-paginator>
   </div>
 </div>
