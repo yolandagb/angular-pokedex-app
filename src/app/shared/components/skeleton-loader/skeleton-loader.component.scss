@@ -1,61 +1,58 @@
 .skeleton-loader {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+
+  &__card {
+    background-color: #f4f4f4;
+    border-radius: 1rem;
     padding: 1rem;
-  
-    &__card {
-      background-color: #f4f4f4;
-      border-radius: 1rem;
-      padding: 1rem;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  }
+
+  &__image {
+    width: 100%;
+    height: 120px;
+    border-radius: 0.75rem;
+    margin-bottom: 1rem;
+    background-color: #e0e0e0;
+  }
+
+  &__line {
+    height: 14px;
+    width: 100%;
+    border-radius: 6px;
+    background-color: #e0e0e0;
+    margin-bottom: 0.5rem;
+
+    &--short {
+      width: 60%;
     }
-  
-    &__image {
-      width: 100%;
-      height: 120px;
-      border-radius: 0.75rem;
-      margin-bottom: 1rem;
-      background-color: #e0e0e0;
-    }
-  
-    &__line {
-      height: 14px;
-      width: 100%;
-      border-radius: 6px;
-      background-color: #e0e0e0;
-      margin-bottom: 0.5rem;
-  
-      &--short {
-        width: 60%;
-      }
-    }
-  
-    &__shimmer {
-      position: relative;
-      overflow: hidden;
-  
-      &::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -150px;
-        width: 150px;
-        height: 100%;
-        background: linear-gradient(
-          to right,
+  }
+
+  &__shimmer {
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -150px;
+      width: 150px;
+      height: 100%;
+      background: linear-gradient(to right,
           transparent 0%,
           rgba(255, 255, 255, 0.3) 50%,
-          transparent 100%
-        );
-        animation: shimmer 1.2s infinite;
-      }
+          transparent 100%);
+      animation: shimmer 1.2s infinite;
     }
   }
-  
-  @keyframes shimmer {
-    100% {
-      transform: translateX(100%);
-    }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
   }
-  
+}

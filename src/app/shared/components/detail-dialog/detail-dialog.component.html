@@ -23,23 +23,21 @@
       <!-- Height & Weight -->
       <div class="custom-dialog__properties">
         <div class="custom-dialog__details">
-          <span class="label">Height</span>
-          <span class="value">{{ pokemonDetails.height }}</span>
-          <span class="unit">cm</span>
+          <span><strong>Height</strong></span>
+          <span class="value">{{ pokemonDetails.height }} cm</span>
         </div>
         <div class="custom-dialog__details">
-          <span class="label">Weight</span>
-          <span class="value">{{ pokemonDetails.weight }}</span>
-          <span class="unit">kg</span>
+          <span><strong>Weight</strong></span>
+          <span class="value">{{ pokemonDetails.weight }} kg</span>
         </div>
-
       </div>
 
       <!-- Stats -->
       <span class="custom-dialog__p">Stats</span>
       <div class="custom-dialog__stats-properties">
         <p class="stats" *ngFor="let stat of stats" [attr.type]="stat.stat.name">
-          {{ stat.stat.name | capitalize }}: {{ stat.base_stat }}
+          {{ stat.stat.name | capitalize }}
+          <span class="value">{{ stat.base_stat }}</span>
         </p>
       </div>
 

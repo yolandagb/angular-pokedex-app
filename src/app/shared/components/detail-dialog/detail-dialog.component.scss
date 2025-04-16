@@ -133,7 +133,9 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     font-family: 'Kumbh Sans', sans-serif;
 
-
+    .value {
+      margin-left: 12px;
+    }
 
   }
 
@@ -159,6 +161,8 @@
   }
 
   .stats {
+    display: flex;
+    justify-content: space-between;
     padding: 0.3rem 0.8rem;
     font-size: 0.9rem;
     font-weight: 600;
@@ -187,6 +191,7 @@
   .stats[type="special-defense"] {
     background-color: #96DA83;
   }
+
   .stats[type="speed"] {
     background-color: #FB94A8;
   }
