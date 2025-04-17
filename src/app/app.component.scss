@@ -1,0 +1,80 @@
+.bubble {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: FFFFFF;
+    background-color: #007bff;
+    border-radius: 20px;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: 'Kumbh Sans', sans-serif;
+  
+  }
+  
+  .bubble[type="fire"] {
+    background-color: #FD7D24;
+  }
+  
+  .bubble[type="water"] {
+    background-color: #4592C4;
+  }
+  
+  .bubble[type="grass"] {
+    background-color: #9BCC50;
+  }
+  
+  .bubble[type="electric"] {
+    background-color: #FFB900;
+  }
+  
+  .bubble[type="psychic"] {
+    background-color: #f85888;
+  }
+  
+  .bubble[type="rock"] {
+    background-color: #A38C21;
+  }
+  
+  .bubble[type="ghost"] {
+    background-color: #7B62A3;
+  }
+  
+  .bubble[type="dragon"] {
+    background-color: #7038f8;
+  }
+  
+  .bubble[type="dark"] {
+    background-color: #71717B;
+  }
+  
+  .bubble[type="fairy"] {
+    background-color: #FDB9E9;
+  }
+  
+  .bubble[type="normal"] {
+    background-color: #9EB7B8;
+  }
+  .bubble[type="bug"] {
+    background-color: #729F3F;
+  }
+  .bubble[type="flying"] {
+    background-color: #729F3F;
+  }
+  .bubble[type="ground"] {
+    background-color: #729F3F;
+  }
+  .bubble[type="steel"] {
+    background-color: #8FA1B9;
+  }
+  .bubble[type="battle"] {
+    background-color: #D56723;
+  }
+  .bubble[type="poison"] {
+    background-color: #B97FC9;
+  }
+  .bubble[type="ice"] {
+    background-color: #51C4E7;
+  }
+  
