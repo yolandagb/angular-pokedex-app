@@ -42,7 +42,7 @@
   }
   
   .bubble[type="dragon"] {
-    background-color: #7038f8;
+    background: linear-gradient(45deg, #53A4CF 50%, #F16E56 60%);
   }
   
   .bubble[type="dark"] {
@@ -60,10 +60,10 @@
     background-color: #729F3F;
   }
   .bubble[type="flying"] {
-    background-color: #729F3F;
-  }
+  background: linear-gradient(45deg, #3DC7EF 30%, #BCB9B8 70%);
+}
   .bubble[type="ground"] {
-    background-color: #729F3F;
+    background: linear-gradient(45deg, #FFD230 50%, #997E1D 60%);
   }
   .bubble[type="steel"] {
     background-color: #8FA1B9;
@@ -77,4 +77,39 @@
   .bubble[type="ice"] {
     background-color: #51C4E7;
   }
-  
+
+  .stats {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #000000;
+    background-color: #007bff;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+  }
+
+  .stats[type="hp"] {
+    background-color: #DF2140;
+  }
+
+  .stats[type="attack"] {
+    background-color: #FF994D;
+  }
+
+  .stats[type="defense"] {
+    background-color: #EECD3D;
+  }
+
+  .stats[type="special-attack"] {
+    background-color: #85DDFF;
+  }
+
+  .stats[type="special-defense"] {
+    background-color: #96DA83;
+  }
+
+  .stats[type="speed"] {
+    background-color: #FB94A8;
+  }
