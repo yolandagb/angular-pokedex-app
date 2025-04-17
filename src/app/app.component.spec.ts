@@ -14,9 +14,9 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'pokedex'`, () => {
+  it(`should have as title 'pokedex-app'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('pokedex');
+    expect(app.title).toEqual('pokedex-app');
   });
 });
