@@ -10,14 +10,14 @@ import { forkJoin, map, switchMap } from 'rxjs';
   styleUrls: ['./pokemon-list.component.scss'],
 })
 export class PokemonListComponent implements OnInit {
-  pokemonList: any;
+  pokemonList: PokemonDetails[] = [];
   isLoading = false;
 
   totalPokemon: number = 1000; 
   pageSize: number = 20;
   currentPage: number = 0;
 
-  searchedPokemon: any = null;
+  searchedPokemon: PokemonDetails | null = null;
   searchError: string = '';
 
   constructor(private pokemonService: PokemonService) {}

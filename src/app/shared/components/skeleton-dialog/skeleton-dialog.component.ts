@@ -9,8 +9,8 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./skeleton-dialog.component.scss']
 })
 export class SkeletonDialogComponent {
-  @Input() statCount: number = 0; // Número de estadísticas a mostrar
-  @Input() showStats: boolean = false; // Mostrar estadísticas o no
+  @Input() statCount: number = 0;
+  @Input() showStats: boolean = false; 
   @Input() imageHeight: string = '100px'; 
 
 }
