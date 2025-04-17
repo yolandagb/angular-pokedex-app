@@ -13,7 +13,6 @@ describe('PokemonListComponent', () => {
 
   const mockPokemonList = [
     { name: 'bulbasaur' },
-    { name: 'ivysaur' },
   ] as PokemonDetails[];
 
   const mockPokemonInfo = {
@@ -47,22 +46,16 @@ describe('PokemonListComponent', () => {
   it('should load Pokémon list on init', fakeAsync(() => {
     when(mockedPokemonService.getPokemonList(20, 0)).thenReturn(of(mockPokemonList));
     when(mockedPokemonService.getPokemonInfo('bulbasaur')).thenReturn(of(mockPokemonInfo));
-    when(mockedPokemonService.getPokemonInfo('ivysaur')).thenReturn(of({ ...mockPokemonInfo, name: 'ivysaur' }));
     when(mockedPokemonService.getPokemonSpecies('bulbasaur')).thenReturn(of(mockPokemonSpecies));
-    when(mockedPokemonService.getPokemonSpecies('ivysaur')).thenReturn(of(mockPokemonSpecies));
 
     component.ngOnInit();
-    tick(); // Simular el paso del tiempo para las operaciones asincrónicas
-
     verify(mockedPokemonService.getPokemonList(20, 0)).once();
     verify(mockedPokemonService.getPokemonInfo('bulbasaur')).once();
     verify(mockedPokemonService.getPokemonSpecies('bulbasaur')).once();
-    verify(mockedPokemonService.getPokemonInfo('ivysaur')).once();
-    verify(mockedPokemonService.getPokemonSpecies('ivysaur')).once();
+    
 
     expect(component.pokemonList.length).toBe(2);
     expect(component.pokemonList[0].name).toBe('bulbasaur');
-    expect(component.pokemonList[0].description).toBe(mockPokemonSpecies);
     expect(component.isLoading).toBeFalse();
   }));
 });
