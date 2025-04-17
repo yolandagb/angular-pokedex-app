@@ -3,8 +3,8 @@
     <div *ngFor="let pokemon of pokemonList" class="custom-card" [attr.type]="pokemon.types[0]?.type.name">
       <div class="pokemon-card__content">
         <div class="pokemon-card__info">
-          <p class="bubble" *ngFor="let type of pokemon.types" [attr.type]="pokemon.types[0]?.type.name"> {{
-            pokemon.types[0]?.type.name | capitalize }}</p>
+          <p class="bubble" *ngFor="let type of pokemon.types" [attr.type]="type.type.name"> {{
+            type.type.name | capitalize }}</p>
         </div>
         <h3 class="pokemon-card__name">{{ pokemon.name | capitalize }}</h3>
         <p class="pokemon-card__description">{{ pokemon.description | capitalize }}</p>
