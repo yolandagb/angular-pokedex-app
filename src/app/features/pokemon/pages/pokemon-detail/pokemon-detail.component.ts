@@ -1,22 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PokemonService } from '../../services/pokemon.service';
-import { CapitalizePipe } from 'src/app/shared/pipes/capitalize.pipe';
-import { CardComponent } from 'src/app/shared/components/card/card.component';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { DetailDialogComponent } from 'src/app/shared/components/detail-dialog/detail-dialog.component';
-import { SkeletonDialogComponent } from 'src/app/shared/components/skeleton-dialog/skeleton-dialog.component';
-import { PokemonSpecies } from '../../models/pokemon.model';
+import { DetailDialogComponent } from '../../../../shared/components/detail-dialog/detail-dialog.component';
+import { SkeletonDialogComponent } from '../../../../shared/components/skeleton-dialog/skeleton-dialog.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
-
+import { CapitalizePipe } from '../../../../shared/pipes/capitalize.pipe';
 @Component({
   selector: 'app-pokemon-detail',
   standalone: true,
   templateUrl: './pokemon-detail.component.html',
   styleUrls: ['./pokemon-detail.component.scss'],
-  imports: [CapitalizePipe, CardComponent, CommonModule, SkeletonDialogComponent, DetailDialogComponent, MatIconModule,
+  imports: [CapitalizePipe, CommonModule, SkeletonDialogComponent, DetailDialogComponent, MatIconModule,
     MatMenuModule,
     MatButtonModule,
   ],

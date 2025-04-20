@@ -10,7 +10,7 @@ describe('PokemonListComponent', () => {
   let component: PokemonListComponent;
   let fixture: ComponentFixture<PokemonListComponent>;
   let mockedPokemonService: PokemonService;
-  let pokemonServiceMock: PokemonService;
+
 
   const mockPokemonList = [
     { name: 'bulbasaur' },
@@ -27,12 +27,12 @@ describe('PokemonListComponent', () => {
 
   beforeEach(async () => {
     mockedPokemonService = mock(PokemonService);
-    pokemonServiceMock = instance(mockedPokemonService);
+    mockedPokemonService = instance(mockedPokemonService);
 
     await TestBed.configureTestingModule({
       declarations: [PokemonListComponent],
       providers: [
-        { provide: PokemonService, useValue: pokemonServiceMock },
+        { provide: PokemonService, useValue: mockedPokemonService },
       ],
     }).compileComponents();
 
