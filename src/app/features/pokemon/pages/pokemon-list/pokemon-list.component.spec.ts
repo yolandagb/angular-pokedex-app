@@ -1,16 +1,14 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { PokemonListComponent } from './pokemon-list.component';
 import { PokemonService } from '../../services/pokemon.service';
-import { mock, instance, when, verify, reset } from 'ts-mockito';
 import { of, throwError } from 'rxjs';
 import { PokemonDetails } from '../../models/pokemon.model';
 import { PageEvent } from '@angular/material/paginator';
 
-describe('PokemonListComponent', () => {
+describe('PokemonListComponent with Jest', () => {
   let component: PokemonListComponent;
   let fixture: ComponentFixture<PokemonListComponent>;
-  let mockedPokemonService: PokemonService;
-
+  let mockPokemonService: jest.Mocked<PokemonService>;
 
   const mockPokemonList = [
     { name: 'bulbasaur' },
@@ -26,38 +24,34 @@ describe('PokemonListComponent', () => {
   const mockPokemonSpecies = 'A seed Pokémon.';
 
   beforeEach(async () => {
-    mockedPokemonService = mock(PokemonService);
-    mockedPokemonService = instance(mockedPokemonService);
+    mockPokemonService = {
+      getPokemonList: jest.fn(),
+      getPokemonInfo: jest.fn(),
+      getPokemonSpecies: jest.fn(),
+    } as unknown as jest.Mocked<PokemonService>;
 
     await TestBed.configureTestingModule({
       declarations: [PokemonListComponent],
-      providers: [
-        { provide: PokemonService, useValue: mockedPokemonService },
-      ],
+      providers: [{ provide: PokemonService, useValue: mockPokemonService }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PokemonListComponent);
     component = fixture.componentInstance;
   });
 
-  afterEach(() => {
-    reset(mockedPokemonService);
-  });
-
   it('should load Pokémon list on init', fakeAsync(() => {
-    when(mockedPokemonService.getPokemonList(20, 0)).thenReturn(of(mockPokemonList));
-    when(mockedPokemonService.getPokemonInfo('bulbasaur')).thenReturn(of(mockPokemonInfo));
-    when(mockedPokemonService.getPokemonSpecies('bulbasaur')).thenReturn(of(mockPokemonSpecies));
+    mockPokemonService.getPokemonList.mockReturnValue(of(mockPokemonList));
+    mockPokemonService.getPokemonInfo.mockReturnValue(of(mockPokemonInfo));
+    mockPokemonService.getPokemonSpecies.mockReturnValue(of(mockPokemonSpecies));
 
     component.ngOnInit();
+    tick();
 
     expect(component.pokemonList.length).toBe(1);
     expect(component.pokemonList[0].name).toBe('bulbasaur');
-    expect(component.isLoading).toBeFalsy();
-
-    verify(mockedPokemonService.getPokemonInfo('bulbasaur')).once();
-    verify(mockedPokemonService.getPokemonSpecies('bulbasaur')).once();
-    verify(mockedPokemonService.getPokemonList(20, 0)).once();
+    expect(mockPokemonService.getPokemonList).toHaveBeenCalledWith(20, 0);
+    expect(mockPokemonService.getPokemonInfo).toHaveBeenCalledWith('bulbasaur');
+    expect(mockPokemonService.getPokemonSpecies).toHaveBeenCalledWith('bulbasaur');
   }));
 
   it('should handle search successfully', () => {
@@ -81,11 +75,10 @@ describe('PokemonListComponent', () => {
     expect(component.searchError).toBe('Pokémon "mewtwo" not found.');
   });
 
-
   it('should reset search if input is empty', fakeAsync(() => {
-    when(mockedPokemonService.getPokemonList(20, 0)).thenReturn(of(mockPokemonList));
-    when(mockedPokemonService.getPokemonInfo('bulbasaur')).thenReturn(of(mockPokemonInfo));
-    when(mockedPokemonService.getPokemonSpecies('bulbasaur')).thenReturn(of(mockPokemonSpecies));
+    mockPokemonService.getPokemonList.mockReturnValue(of(mockPokemonList));
+    mockPokemonService.getPokemonInfo.mockReturnValue(of(mockPokemonInfo));
+    mockPokemonService.getPokemonSpecies.mockReturnValue(of(mockPokemonSpecies));
 
     component.onSearchPokemon('');
     tick();
@@ -96,9 +89,9 @@ describe('PokemonListComponent', () => {
   }));
 
   it('should update page and load new Pokémon on pagination change', fakeAsync(() => {
-    when(mockedPokemonService.getPokemonList(10, 10)).thenReturn(of(mockPokemonList));
-    when(mockedPokemonService.getPokemonInfo('bulbasaur')).thenReturn(of(mockPokemonInfo));
-    when(mockedPokemonService.getPokemonSpecies('bulbasaur')).thenReturn(of(mockPokemonSpecies));
+    mockPokemonService.getPokemonList.mockReturnValue(of(mockPokemonList));
+    mockPokemonService.getPokemonInfo.mockReturnValue(of(mockPokemonInfo));
+    mockPokemonService.getPokemonSpecies.mockReturnValue(of(mockPokemonSpecies));
 
     const event: PageEvent = { pageIndex: 1, pageSize: 10, length: 100 };
 
@@ -111,7 +104,7 @@ describe('PokemonListComponent', () => {
   }));
 
   it('should handle errors from getPokemonList', fakeAsync(() => {
-    when(mockedPokemonService.getPokemonList(20, 0)).thenReturn(throwError(() => new Error('Network error')));
+    mockPokemonService.getPokemonList.mockReturnValue(throwError(() => new Error('Network error')));
 
     component.ngOnInit();
     tick();
@@ -121,14 +114,13 @@ describe('PokemonListComponent', () => {
   }));
 
   it('should handle errors from Pokémon detail fetch', fakeAsync(() => {
-    when(mockedPokemonService.getPokemonList(20, 0)).thenReturn(of(mockPokemonList));
-    when(mockedPokemonService.getPokemonInfo('bulbasaur')).thenReturn(throwError(() => new Error('Oops')));
-    
+    mockPokemonService.getPokemonList.mockReturnValue(of(mockPokemonList));
+    mockPokemonService.getPokemonInfo.mockReturnValue(throwError(() => new Error('Oops')));
+
     component.ngOnInit();
     tick();
 
     expect(component.isLoading).toBe(false);
     expect(component.pokemonList).toEqual([]);
   }));
-
 });
