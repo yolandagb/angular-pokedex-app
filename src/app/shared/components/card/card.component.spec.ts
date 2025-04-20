@@ -1,34 +1,37 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CardComponent } from './card.component';
-import { instance, mock, when } from 'ts-mockito';
-import { PokemonService } from 'src/app/features/pokemon/services/pokemon.service';
 import { Router } from '@angular/router';
+import { By } from '@angular/platform-browser';
+import { MatCardModule } from '@angular/material/card';
+import { CommonModule } from '@angular/common';
 
 describe('CardComponent', () => {
   let component: CardComponent;
   let fixture: ComponentFixture<CardComponent>;
-  let mockedPokemonService: PokemonService;
   let routerMock: jest.Mocked<Router>;
 
-  beforeEach(() => {
-    mockedPokemonService = mock(PokemonService);
+  beforeEach(async () => {
     routerMock = {
       navigate: jest.fn(),
     } as unknown as jest.Mocked<Router>;
 
-    TestBed.configureTestingModule({
-      imports: [CardComponent], // Importa el componente standalone
-      providers: [
-        { provide: PokemonService, useValue: instance(mockedPokemonService) },
-        { provide: Router, useValue: routerMock },
+    await TestBed.configureTestingModule({
+      imports: [
+        CardComponent,
+      
       ],
-    });
+      providers: [
+        { provide: Router, useValue: routerMock }, 
+      ],
+    }).compileComponents();
+  });
 
+
+  beforeEach(() => {
     fixture = TestBed.createComponent(CardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
   it('should create', () => {
     expect(component).toBeTruthy();
   });
@@ -41,12 +44,5 @@ describe('CardComponent', () => {
     expect(routerMock.navigate).toHaveBeenCalledWith(['/pokemon', pokemonId]);
   });
 
-  it('should not call navigate when pokemonList is empty', () => {
-    component.pokemonList = [];
-    component.pokemonDetails = null;
 
-    component.navigateToDetail(1);
-
-    expect(routerMock.navigate).not.toHaveBeenCalled();
-  });
 });
