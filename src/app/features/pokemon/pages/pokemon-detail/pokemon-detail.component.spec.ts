@@ -14,7 +14,7 @@ describe('PokemonDetailComponent', () => {
   beforeEach(async () => {
     mockedPokemonService = {
       getPokemonInfo: jest.fn(),
-      getPokemonSpeciesr: jest.fn(),
+      getPokemonSpeciesUrl: jest.fn(),
       getEvolutionChain: jest.fn(),
     } as unknown as jest.Mocked<PokemonService>;
 

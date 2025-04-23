@@ -77,7 +77,7 @@ export class PokemonService {
    * Fetches species data from a full URL.
    * @param url The full URL to the species endpoint.
    */
-  getPokemonSpeciesr(url: string): Observable<any> {
+  getPokemonSpeciesUrl(url: string): Observable<any> {
     return this.http.get(url).pipe(
       catchError(error => {
         console.error('Error fetching species data from URL:', error);

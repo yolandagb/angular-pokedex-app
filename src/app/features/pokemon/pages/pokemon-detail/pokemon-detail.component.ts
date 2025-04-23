@@ -44,6 +44,9 @@ export class PokemonDetailComponent implements OnInit {
     });
   }
 
+  navigateToAbout(): void {
+    window.open('https://pokeapi.co/', '_blank');
+  }
 
   private resetState(): void {
     this.isLoading = true;
@@ -76,7 +79,7 @@ export class PokemonDetailComponent implements OnInit {
   }
 
   private loadSpeciesData(url: string): void {
-    this.pokemonService.getPokemonSpeciesr(url).subscribe({
+    this.pokemonService.getPokemonSpeciesUrl(url).subscribe({
       next: (species:any) => {
         this.description = this.extractDescription(species);
         this.loadEvolutionChain(species.evolution_chain.url);
